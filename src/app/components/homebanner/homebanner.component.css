@@ -1,0 +1,52 @@
+.HomeBanner {
+    background-image: url(../../../assets/backgroundimage.png);
+    min-height: 95vh;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+  }
+  
+  .login-reg{
+    margin-left: 54em;
+  }
+  
+  .mainLine {
+    color: goldenrod;
+  }
+  
+  .RightHeader {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .RightHeader {
+    color: white;
+    font-family: "Bodoni Moda", serif;
+    font-weight: 600;
+  }
+  .AboutUsBox {
+    background-image: url("../../../assets/teamwork.png");
+    background-repeat: no-repeat;
+    
+    background-size: 100% 100%;
+  }
+  #carouselExampleIndicators {
+ background-color:lightblue;
+ 
+  }
+  .card-group{
+    margin:0 12em 0 12em;
+  }
+  .mid-container{
+    background: rgb(200,114,60);
+background: linear-gradient(159deg, rgba(200,114,60,1) 16%, rgba(235,220,134,1) 92%);
+  }
+  .faqsec{
+    background: rgb(60,110,200);
+background: linear-gradient(159deg, rgba(60,110,200,1) 16%, rgba(235,134,134,1) 92%);
+  }
+  .accordion,.accordion-item,.accordion-button{
+    background: rgb(149,154,163);
+background: linear-gradient(159deg, rgba(149,154,163,1) 16%, rgba(233,233,233,1) 92%);
+  }

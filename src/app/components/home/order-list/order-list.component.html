@@ -1,0 +1,102 @@
+<div class="customTable m-5" *ngIf="data">
+  <h1 class="mb-3">All Orders</h1>
+  </div>
+  <div>
+    <div
+      *ngFor="
+        let item of sorted
+          | paginate: { itemsPerPage: 5, currentPage: paginationNumber2 }
+      "
+    >
+      <div class="transactionBox">
+        <div class="row">
+          <div class="col-md-2 mb-3">
+            <img [src]="item.productImg" alt="" width="100%" height="auto" />
+          </div>
+          <div class="col-md-7">
+            <h4>{{ item.productName }}</h4>
+
+            <h6 class="mt-4">Order Id: {{ item.orderId }}</h6>
+            <h6 class="mb-4">
+              Order Created At:
+              {{
+                this.service.getFormat(
+                  item.orerCreatedAt.substring(
+                    0,
+                    item.orerCreatedAt.indexOf("T") + 0
+                  )
+                )
+              }}
+            </h6>
+          </div>
+          <div class="col-md-3">
+            <div class="headerPill">
+              <div>
+                Total Amount:
+                <span style="font-weight: 600">${{ item.totalAmount }}</span>
+              </div>
+              <div>
+                Remaining Amount:
+                <span style="font-weight: 600">
+                  ${{ item.remainingBalance }}
+                </span>
+              </div>
+              <div>
+                Amount Paid:
+                <span style="font-weight: 600"> ${{ item.amountPaid }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <hr />
+        <div class="responsiveStyle mb-3">
+          <h4 class="mb-2">Emi Installments: {{ item.emiPeriod }}</h4>
+
+          <div *ngIf="item.isEmiCompleted" class="headerPillDanger">
+            <span>Emi is Completed</span>
+          </div>
+          <div *ngIf="!item.isEmiCompleted" class="headerPillDanger2">
+            <span>Emi is Not Completed</span>
+          </div>
+        </div>
+        <div class="mb-4 d-flex justify-content-start flex-wrap">
+          <div class="headerPill m-2">
+            <div>Emi Amount: ${{ item.emiAmount }}</div>
+          </div>
+          <div class="headerPill m-2">
+            <div>
+              Emi Starts At:
+              {{
+                this.service.getFormat(
+                  item.emiInitialDate.substring(
+                    0,
+                    item.emiInitialDate.indexOf("T") + 0
+                  )
+                )
+              }}
+            </div>
+          </div>
+          <div class="headerPill m-2">
+            <div>
+              Next Emi Date:
+              {{
+                this.service.getFormat(
+                  item.emiNextDate.substring(
+                    0,
+                    item.emiNextDate.indexOf("T") + 0
+                  )
+                )
+              }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <pagination-controls
+        (pageChange)="paginationNumber2 = $event"
+      ></pagination-controls>
+    </div>
+  
+</div>

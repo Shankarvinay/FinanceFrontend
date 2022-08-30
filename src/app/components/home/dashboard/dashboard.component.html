@@ -1,0 +1,164 @@
+<div
+  class="container"
+  *ngIf="data && data.userCardDetails.cardStatus == 'Activated'; else elseBlock"
+>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="creditCard px-4 d-flex justify-content-center align-items-start flex-column">
+        
+        <h1 class="cardNumber mt-4">
+          {{ data.userCardDetails.cardNumber }}
+        </h1>
+        <div
+          class="bottomValue mt-4 d-flex justify-content-between align-items-center"
+          style="width: 100%"
+        >
+          <div class="cardHolderValues"><br><br>
+            <p class="cardHolder">Card Holder Name</p>
+            <h4 class="cardHolderName">
+              {{ data.userCardDetails.fullname.toUpperCase() }}
+            </h4>
+          </div>
+
+          <div class="cardHolderValues"><br><br>
+            <p class="cardHolder">Validity</p>
+            <h4 class="cardHolderName">{{ data.userCardDetails.validity }}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="col-lg-6"
+      *ngIf="data.userCardDetails.cardStatus == 'Activated'"
+    >
+      <div class="AmountCard">
+        <div class="row amountSection">
+          <div class="col-md-4">
+            <h5 style="word-break: break-all">
+              ${{ data.userCardDetails.totalCredits }}
+            </h5>
+            <p>Total Credits</p>
+          </div>
+
+          <div class="col-md-4">
+            <h5 style="word-break: break-all">
+              ${{ data.userCardDetails.remainingAmount }}
+            </h5>
+            <p>Remaining Credits</p>
+          </div>
+          <div class="col-md-4">
+            <h5 style="word-break: break-all">
+              ${{ data.userCardDetails.amountSpent }}
+            </h5>
+            <p>Credits Spent</p>
+          </div>
+        </div>
+        <hr />
+        <h6>
+          Bank Account Number : {{ data.userCardDetails.savingsAccountNumber }}
+        </h6>
+        <h6>bankName : {{ data.userCardDetails.bankName }}</h6>
+        <h6>Card Type : {{ data.userCardDetails.cardType }}</h6>
+        <h6>Card Status : {{ data.userCardDetails.cardStatus }}</h6>
+      </div>
+    </div>
+  </div>
+
+  <div class="OrdersTable">
+    <div class="d-flex justify-content-between align-items-center">
+      <h1 class="mb-3">Past Orders</h1>
+      <div routerLink="/home/orderHistory" class="btn btn-success">
+        View All ->
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Order Id</th>
+            <th scope="col">Product Name</th>
+
+            <th scope="col">Order date</th>
+            <th scope="col">Emi Completed</th>
+            <th scope="col">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- adding pagination in the tables using paginate in the for loop and pagination controls -->
+          <tr
+            *ngFor="
+              let item of SortedOrder
+                | paginate: { itemsPerPage: 3, currentPage: paginationNumber1 }
+            "
+          >
+            <th style="width: 20%" scope="row">{{ item.orderId }}</th>
+            <td>{{ item.productName }}</td>
+            <td>
+              {{
+                this.service.getFormat(
+                  item.orerCreatedAt.substring(
+                    0,
+                    item.orerCreatedAt.indexOf("T") + 0
+                  )
+                )
+              }}
+            </td>
+            <td>{{ item.isEmiCompleted ? "Completed" : "Not Completed" }}</td>
+
+            <td>${{ item.totalAmount }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="OrdersTable">
+    <div class="d-flex justify-content-between align-items-center">
+      <h1 class="mb-3">Past Transactions</h1>
+      <div class="btn btn-primary" routerLink="/home/transactions">
+        View All ->
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">Transaction Id</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Transaction Status</th>
+            <th scope="col">Amount Paid</th>
+            <th scope="col">Transaction Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let item of sorted
+                | paginate: { itemsPerPage: 3, currentPage: paginationNumber2 }
+            "
+          >
+            <th style="width: 20%" scope="row">{{ item.transactionId }}</th>
+            <td>{{ item.productName }}</td>
+            <td>{{ item.tansactionStatus }}</td>
+            <td>${{ item.amountPaid }}</td>
+            <td>
+              {{
+                this.service.getFormat(
+                  item.transactionDate.substring(
+                    0,
+                    item.transactionDate.indexOf("T") + 0
+                  )
+                )
+              }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<ng-template #elseBlock>
+  <div class="OrdersTable">Your Card is not activated please contact Admin</div>
+</ng-template>

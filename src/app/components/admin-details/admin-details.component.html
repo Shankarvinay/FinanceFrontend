@@ -1,0 +1,203 @@
+<nav class="navbar navbar-dark bg-dark px-5">
+  <a class="navbar-brand text-white">Finance Admin Panel</a>
+  <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">
+    Logout
+  </button>
+</nav>
+<div class="container mt-5 UserDetailsBox" *ngIf="userDetails">
+  <div class="headerBox">
+    <div class="d-flex justify-content-between align-items-center">
+      <h1>User Details</h1>
+      <div class="headerPillDanger2">Deleted Account</div>
+    </div>
+
+    <hr />
+    <div class="row">
+      <div class="col-md-6">
+        <div class="content">
+          <span class="header">User Id :</span>
+          <span class="value">{{ userDetails.data.userid }}</span>
+        </div>
+        <div class="content">
+          <span class="header">Username :</span>
+          <span class="value">{{ userDetails.data.username }}</span>
+        </div>
+        <div class="content">
+          <span class="header">Full Name :</span>
+          <span class="value">{{ userDetails.data.fullName }}</span>
+        </div>
+        <div class="content">
+          <span class="header">User Activation Status :</span>
+          <span class="value">{{ userDetails.data.isActivated }}</span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="content">
+          <span class="header">Email :</span>
+          <span class="value">{{ userDetails.data.email }}</span>
+        </div>
+        <div class="content">
+          <span class="header">Phone Number:</span>
+          <span class="value">{{ userDetails.data.phoneNumber }}</span>
+        </div>
+        <div class="content">
+          <span class="header">Address:</span>
+          <span class="value">{{ userDetails.data.userAddress }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="headerBox mt-5">
+    <h1>User Bank Details</h1>
+    <hr />
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="content">
+          <span class="header">Bank Number :</span>
+          <span class="value">{{ userDetails.data.bankname }}</span>
+        </div>
+        <div class="d-none">
+          <span class="header">Bank Id :</span>
+          <span class="value">{{ userDetails.data.bankId }}</span>
+        </div>
+        <div class="content">
+          <span class="header">Bank Branch Name :</span>
+          <span class="value">{{ userDetails.data.branch }}</span>
+        </div>
+        <div class="content">
+          <span class="header">Savings Account Number :</span>
+          <span class="value">{{ userDetails.data.accountNumber }}</span>
+        </div>
+        <div class="content">
+          <span class="header">IFSC Code :</span>
+          <span class="value">{{ userDetails.data.ifscCode }}</span>
+        </div>
+        <div class="content">
+          <span class="header">Is Activated:</span>
+          <span class="value">{{ userDetails.data.isActivated }}</span>
+        </div>
+        <div class="content">
+          <span class="header">Card Status:</span>
+          <span class="value">{{ userDetails.data.cardStatus }}</span>
+        </div>
+        <div class="content">
+          <span class="header">Card Type:</span>
+          <span class="value">{{ userDetails.data.cardType }}</span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="content">
+          <span class="header">Remaining balance:</span>
+          <span class="value">${{ userDetails.data.remainingBalance }}</span>
+        </div>
+        <div class="content">
+          <span class="header">Amount Spent:</span>
+          <span class="value">${{ userDetails.data.amountSpent }}</span>
+        </div>
+        <div class="content">
+          <span class="header">Card Number:</span>
+          <span class="value">{{ userDetails.data.cardNumber }}</span>
+        </div>
+        <div class="content">
+          <span class="header">Is Verified:</span>
+          <span class="value">{{ userDetails.data.isVerified }}</span>
+        </div>
+        <div class="content">
+          <span class="header">Joining Fees Paid:</span>
+          <span class="value">{{ userDetails.data.joiningFees }}</span>
+        </div>
+        <div class="content">
+          <span class="header">Total Credits:</span>
+          <span class="value">{{ userDetails.data.totalCredit }}</span>
+        </div>
+        <div class="content">
+          <span class="header">Card Validity:</span>
+          <span class="value">{{ userDetails.data.validity }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="headerBox mt-5" *ngIf="userDetails.data.isActivateUser">
+    <h1>Activate Account</h1>
+    <hr />
+    <div style="width: 100%">
+      <form
+        [formGroup]="service.formModel"
+        autocomplete="off"
+        (submit)="onSubmit()"
+      >
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group required inputField">
+              <input
+                class="form-control"
+                placeholder="Total Credit*"
+                formControlName="TotalCredits"
+              />
+              <label
+                class="text-danger"
+                *ngIf="
+                  service.formModel.get('TotalCredits').touched &&
+                  service.formModel.get('TotalCredits').errors?.required
+                "
+                >This Field is Required</label
+              >
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group required inputField">
+              <input placeholder="Card Number*" formControlName="CardNumber" />
+              <label
+                class="text-danger"
+                *ngIf="
+                  service.formModel.get('CardNumber').touched &&
+                  service.formModel.get('CardNumber').errors?.required
+                "
+                >This field is mandatory.</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group required inputField">
+              <input placeholder="Validity*" formControlName="validity" />
+              <label
+                class="text-danger"
+                *ngIf="
+                  service.formModel.get('validity').touched &&
+                  service.formModel.get('validity').errors?.required
+                "
+                >This field is mandatory.</label
+              >
+              <label
+                class="text-danger"
+                *ngIf="
+                  service.formModel.get('validity').touched &&
+                  service.formModel.get('validity').invalid
+                "
+                >Enter Valid Credit Card Expiry</label
+              >
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <button
+              type="submit"
+              class="submitBtn"
+              [disabled]="!service.formModel.valid"
+            >
+              Activate Account
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="mb-5"></div>
+</div>

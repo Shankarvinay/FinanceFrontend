@@ -1,0 +1,42 @@
+<div
+  class="container mt-3 mb-3"
+  *ngIf="isCardActivated == 'Activated'; else elseBlock"
+>
+  <main class="grid">
+    <article
+      *ngFor="let item of data"
+      (click)="handleClick(item.productId)"
+      class="cardContainer"
+    >
+      <img
+        class="imgClass"
+        [src]="item.img"
+        style="height: 250px"
+        width="100%"
+      />
+
+      <div class="text">
+        <div class="row">
+          <div class="col-md-8">
+            <h2 class="text-black" style="word-break: break-all">
+              {{ item.productName.slice(0, 13) }}..
+            </h2>
+          </div>
+          <div class="col-md-4 d-flex justify-content-end align-items-start">
+            <h6 class="headerPill">
+              {{ item.rating }}
+              <i style="color: gold" class="fa-solid fa-star"></i>
+            </h6>
+          </div>
+        </div>
+
+        <h4 class="text-black">${{ item.totalCost }}</h4>
+        <p class="text-black">No cost EMI Starts at {{ item.emiCost }}</p>
+        <button class="btn btn-primary w-100">Buy Now</button>
+      </div>
+    </article>
+  </main>
+</div>
+<ng-template #elseBlock>
+  <div class="OrdersTable">Your Card is not activated please contact Admin</div>
+</ng-template>

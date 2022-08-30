@@ -1,0 +1,207 @@
+<nav class="navbar navbar-dark bg-dark px-5">
+  <a class="navbar-brand text-white">Credo Admin Panel</a>
+  <div>
+    <button
+      class="btn btn-primary my-2 my-sm-0 mx-2"
+      routerLink="/admin/AddAdmin"
+    >
+      Add Admin Users
+    </button>
+
+    <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">
+      Logout
+    </button>
+  </div>
+</nav>
+
+<div class="container mt-5" *ngIf="userDetails && res">
+  <h1 class="mb-5">Hello, {{ userDetails.res.fullname }}</h1>
+  <main class="grid mb-5">
+    <article style="background-color: #a0d9959a">
+      <div class="text">
+        <h2>{{ res?.totalUsers }}</h2>
+        <h6>Total Users <i class="fa-solid fa-arrow-right-long"></i></h6>
+      </div>
+    </article>
+    <article style="background-color: #b4eaff93">
+      <div class="text">
+        <h2>{{ res?.adminUser }}</h2>
+
+        <h6>Admin Users <i class="fa-solid fa-arrow-right-long"></i></h6>
+      </div>
+    </article>
+
+    <article style="background-color: #b2a4ff9a">
+      <div class="text">
+        <h2>{{ res?.userCount }}</h2>
+        <h6>Customer Users <i class="fa-solid fa-arrow-right-long"></i></h6>
+      </div>
+    </article>
+
+    <article style="background-color: #ffb4b493">
+      <div class="text">
+        <h2>{{ res?.deactivatedAccount }}</h2>
+        <h6>
+          Activation Account Request
+          <i class="fa-solid fa-arrow-right-long"></i>
+        </h6>
+      </div>
+    </article>
+  </main>
+  <div class="customTable">
+    <h1 class="mb-5">All Admin Users</h1>
+    <div class="SearchField">
+      <div>
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <div class="inputField">
+        <input
+          type="text"
+          placeholder="Enter username, email and full name to Search"
+          name="search"
+          [(ngModel)]="searchValue"
+          (ngModelChange)="Search()"
+        />
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">User Id</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Username</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let item of res.adminList
+                | paginate
+                  : {
+                      id: 'pagination1',
+                      itemsPerPage: 5,
+                      currentPage: paginationNumber1
+                    }
+            "
+          >
+            <th style="width: 30%" scope="row">{{ item.id }}</th>
+            <td>{{ item.fullName }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.userName }}</td>
+          </tr>
+        </tbody>
+        <div>
+          <pagination-controls
+            id="pagination1"
+            (pageChange)="paginationNumber1 = $event"
+          ></pagination-controls>
+        </div>
+      </table>
+    </div>
+  </div>
+
+  <div class="customTable mt-5">
+    <h1 class="mb-5">All Customer Users</h1>
+    <div class="SearchField">
+      <div>
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
+      <div class="inputField">
+        <input
+          type="text"
+          placeholder="Enter username, email and full name to Search"
+          name="search"
+          [(ngModel)]="searchUserValue"
+          (ngModelChange)="SearchUser()"
+        />
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table customTableMy">
+        <thead class="thead-light">
+          <tr>
+            <th scope="col">User Id</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Username</th>
+            <th scope="col">Card Status</th>
+            <th scope="col">Created At</th>
+            <th scope="col">Deleted Account</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let item of res.userList
+                | paginate
+                  : {
+                      id: 'pagination2',
+                      itemsPerPage: 5,
+                      currentPage: paginationNumber2
+                    }
+            "
+          >
+            <th style="width: 50% !important" scope="row">
+              {{ item.userid }}
+            </th>
+            <td>{{ item.fullName }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.username }}</td>
+            <td>{{ item.isActivated ? "Activated" : "Not Activated" }}</td>
+            <td>
+              {{
+                this.service.getFormat(
+                  item.createdAt.substring(0, item.createdAt.indexOf("T") + 0)
+                )
+              }}
+            </td>
+            <td>
+              {{
+                item.isActivatedUser ? "Activated Account" : "Deleted Account"
+              }}
+            </td>
+            <td>
+              <div
+                style="width: 200px"
+                class="d-flex justify-content-center align-items-start"
+                *ngIf="item.isActivatedUser; else detailsButton"
+              >
+                <button
+                  (click)="getDetails(item.userid)"
+                  class="btn btn-primary"
+                >
+                  Activate
+                </button>
+                <div style="margin-left: 10px"></div>
+                <button
+                  (click)="DeleteUser(item.userid)"
+                  class="btn btn-danger"
+                >
+                  Delete
+                </button>
+              </div>
+              <ng-template #detailsButton>
+                <button
+                  (click)="getDetails(item.userid)"
+                  class="btn btn-primary"
+                  style="width: 100%"
+                >
+                  Details
+                </button>
+              </ng-template>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="width: 300px !important; margin-top: 20px">
+      <pagination-controls
+        id="pagination2"
+        (pageChange)="paginationNumber2 = $event"
+      ></pagination-controls>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,310 @@
+<div class="registerForm" style="height: 100%; padding: 50px 0 !important">
+  <div class="LoginShadow">
+    <h1 class="text-center">Signup for Account</h1>
+
+    <div style="width: 100%">
+      <form
+        [formGroup]="service.formModel"
+        autocomplete="off"
+        (submit)="onSubmit()"
+      >
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group required inputField">
+              <input
+                placeholder="Email*"
+                formControlName="Email"
+                type="email"
+              />
+              <label
+                class="text-danger"
+                *ngIf="
+                  service.formModel.get('Email').touched &&
+                  service.formModel.get('Email').errors?.required
+                "
+                >Email address is required</label
+              >
+              <label
+                class="text-danger"
+                *ngIf="
+                  service.formModel.get('Email').touched &&
+                  service.formModel.get('Email').invalid
+                "
+                >Enter Valid Email</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group required inputField">
+              <input
+                class="form-control"
+                placeholder="Full Name*"
+                formControlName="FullName"
+              />
+              <label
+                class="text-danger"
+                *ngIf="
+                  service.formModel.get('FullName').touched &&
+                  service.formModel.get('FullName').errors?.required
+                "
+                >This Field is Required</label
+              >
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group required inputField">
+              <input placeholder="Username*" formControlName="UserName" />
+              <label
+                class="text-danger"
+                *ngIf="
+                  service.formModel.get('UserName').touched &&
+                  service.formModel.get('UserName').errors?.required
+                "
+                >This field is mandatory.</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="row" formGroupName="Passwords">
+          <div class="col-md-6">
+            <div class="form-group required inputField">
+              <input
+                type="password"
+                placeholder="Password*"
+                formControlName="Password"
+              />
+              <label
+                class="text-danger"
+                *ngIf="
+                  service.formModel.get('Passwords.Password').touched &&
+                  service.formModel.get('Passwords.Password').errors?.required
+                "
+                >This field is mandatory.</label
+              >
+              <label
+                class="text-danger"
+                *ngIf="
+                  service.formModel.get('Passwords.Password').touched &&
+                  service.formModel.get('Passwords.Password').errors?.minlength
+                "
+                >Minimum 4 characters required.</label
+              >
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group required inputField">
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                formControlName="ConfirmPassword"
+              />
+              <label
+                class="text-danger"
+                *ngIf="
+                  service.formModel.get('Passwords.ConfirmPassword').touched &&
+                  service.formModel.get('Passwords.ConfirmPassword').errors
+                    ?.required
+                "
+                >This field is mandatory.</label
+              >
+              <label
+                class="text-danger"
+                *ngIf="
+                  service.formModel.get('Passwords.ConfirmPassword').touched &&
+                  service.formModel.get('Passwords.ConfirmPassword').errors
+                    ?.passwordMismatch
+                "
+                >Confirm Password does not match.</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group required inputField">
+              <input
+                type="text"
+                placeholder="Account Number*"
+                formControlName="AccountNumber"
+              />
+              <label
+                class="text-danger"
+                *ngIf="
+                  service.formModel.get('AccountNumber').touched &&
+                  service.formModel.get('AccountNumber').errors?.required
+                "
+                >This field is mandatory.</label
+              >
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group required inputField">
+              <input
+                type="tel"
+                placeholder="Phone Number*"
+                formControlName="PhoneNumber"
+              />
+              <label
+                class="text-danger"
+                *ngIf="
+                  service.formModel.get('PhoneNumber').touched &&
+                  service.formModel.get('PhoneNumber').errors?.minlength
+                "
+                >Length should be 10 .</label
+              >
+              <label
+                class="text-danger"
+                *ngIf="
+                  service.formModel.get('PhoneNumber').touched &&
+                  service.formModel.get('PhoneNumber').errors?.required
+                "
+                >This field is mandatory.</label
+              >
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group required inputField">
+              <input
+                type="text"
+                placeholder="Address"
+                formControlName="Address"
+              />
+              <label
+                class="text-danger"
+                *ngIf="
+                  service.formModel.get('Address').touched &&
+                  service.formModel.get('Address').errors?.required
+                "
+                >This field is mandatory.</label
+              >
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group required inputField">
+              <input
+                type="tel"
+                placeholder="Bank Name*"
+                formControlName="BankName"
+              />
+              <label
+                class="text-danger"
+                *ngIf="
+                  service.formModel.get('BankName').touched &&
+                  service.formModel.get('BankName').errors?.required
+                "
+                >This field is mandatory.</label
+              >
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group required inputField">
+              <input
+                type="text"
+                placeholder="Branch Name* "
+                formControlName="BranchName"
+              />
+              <label
+                class="text-danger"
+                *ngIf="
+                  service.formModel.get('BranchName').touched &&
+                  service.formModel.get('BranchName').errors?.required
+                "
+                >This field is mandatory.</label
+              >
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group required inputField">
+              <input
+                type="tel"
+                placeholder="IFSC Code*"
+                formControlName="IFSCcode"
+              />
+              <label
+                class="text-danger"
+                *ngIf="
+                  service.formModel.get('IFSCcode').touched &&
+                  service.formModel.get('IFSCcode').errors?.required
+                "
+                >This field is mandatory.</label
+              >
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group required inputField">
+              <label>Date of Birth</label>
+              <input
+                type="date"
+                formControlName="DateOfBirth"
+                style="margin-top: 10px"
+              />
+              <label
+                class="text-danger"
+                *ngIf="
+                  service.formModel.get('DateOfBirth').touched &&
+                  service.formModel.get('DateOfBirth').errors?.required
+                "
+                >This field is mandatory.</label
+              >
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group required selectField">
+              <label>Card Type</label>
+              <select
+                formControlName="CardType"
+                aria-label="Default select example"
+              >
+                <option selected disabled value="">
+                  Open this select menu
+                </option>
+                <option value="Premium">Premium</option>
+                <option value="Titanium">Titanium</option>
+              </select>
+              <label
+                class="text-danger"
+                *ngIf="
+                  service.formModel.get('CardType').touched &&
+                  service.formModel.get('CardType').errors?.required
+                "
+                >This field is mandatory.</label
+              >
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <button
+              type="submit"
+              class="submitBtn"
+              [disabled]="!service.formModel.valid"
+            >
+              Sign Up
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="text-center">
+      <div>
+        Don't have a account?
+        <span> <a routerLink="/user/login">Login</a></span>
+      </div>
+
+      <a routerLink="/admin/login">Login as admin</a>
+    </div>
+    <br><br><br>
+  </div>
+</div>

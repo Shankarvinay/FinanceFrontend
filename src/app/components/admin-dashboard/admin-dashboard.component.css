@@ -1,0 +1,95 @@
+body {
+  padding: 40px 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-gap: 20px;
+  align-items: stretch;
+}
+
+.grid > article {
+  border: 1px solid #ccc;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+.grid > article:hover {
+  transform: translateY(-5px);
+}
+
+.grid > article img {
+  max-width: 100%;
+}
+
+.grid .text {
+  padding: 20px;
+}
+
+.customTable {
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  padding: 20px 40px;
+}
+
+table thead tr {
+  background-color: rgb(223, 223, 223);
+  border-radius: 12px;
+}
+table thead tr th {
+  padding: 12px;
+}
+table thead tr:first-child th:first-child {
+  border-top-left-radius: 10px !important;
+}
+table thead tr:first-child th:last-child {
+  border-top-right-radius: 10px;
+}
+table tbody {
+  border: 1px solid rgb(223, 223, 223);
+}
+table tbody tr {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+table tbody tr:hover {
+  background-color: rgba(117, 206, 241, 0.4235294118);
+}
+table tbody tr td,
+table tbody tr th {
+  padding: 20px;
+}
+
+.SearchField {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  padding: 5px 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
+.SearchField .inputField {
+  width: 100%;
+}
+.SearchField .inputField input {
+  color: rgb(78, 78, 78);
+  flex: 1;
+  width: 100%;
+  border: none;
+  padding: 5px 20px;
+}
+.SearchField .inputField input:focus {
+  outline: none;
+}
+
+.customTableMy {
+  width: 100% !important;
+  overflow-x: scroll;
+}
+.customTableMy th,
+.customTableMy td {
+  min-width: 200px;
+  text-align: center;
+}

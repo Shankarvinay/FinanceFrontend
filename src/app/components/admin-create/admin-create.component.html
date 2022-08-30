@@ -1,0 +1,72 @@
+<nav class="navbar navbar-dark bg-dark px-5">
+  <a class="navbar-brand text-white">Finance Admin Panel</a>
+  <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">
+    Logout
+  </button>
+</nav>
+<div class="loginForm">
+  <div class="LoginShadow">
+    <h1 class="text-center">Add a new Admin</h1>
+
+    <div style="width: 100%">
+      <form
+        #form="ngForm"
+        class="mb-4"
+        autocomplete="off"
+        (submit)="onSubmit(form)"
+      >
+        <div class="InputField">
+          <input
+            #email="ngModel"
+            name="email"
+            placeholder="Admin Email"
+            [(ngModel)]="formModel.email"
+            required
+          />
+        </div>
+        <div class="InputField">
+          <input
+            #username="ngModel"
+            name="username"
+            placeholder="Admin username"
+            [(ngModel)]="formModel.username"
+            required
+          />
+         <div ></div>
+        </div>
+        <div class="InputField">
+          <input
+            #fullName="ngModel"
+            name="fullName"
+            placeholder="Admin Full Name"
+            [(ngModel)]="formModel.fullName"
+            required
+          />
+        </div>
+        <div class="InputField">
+          <input
+            type="password"
+            #password="ngModel"
+            placeholder="Admin Password"
+            name="password"
+            [(ngModel)]="formModel.password"
+            required
+          />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group w-full">
+            <button type="submit" class="submitBtn" [disabled]="form.invalid">
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="text-danger">
+      Note: Password will be admin, after creation user have to change the
+      password
+    </div>
+  </div>
+</div>

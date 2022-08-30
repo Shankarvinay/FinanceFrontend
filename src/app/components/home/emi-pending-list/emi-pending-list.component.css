@@ -1,0 +1,103 @@
+.customTable {
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    padding: 20px 40px;
+  }
+  
+  table thead tr {
+    background-color: rgb(223, 223, 223);
+    border-radius: 12px;
+  }
+  table thead tr th {
+    padding: 12px;
+  }
+  table thead tr:first-child th:first-child {
+    border-top-left-radius: 10px !important;
+  }
+  table thead tr:first-child th:last-child {
+    border-top-right-radius: 10px;
+  }
+  table tbody {
+    border: 1px solid rgb(223, 223, 223);
+  }
+  table tbody tr {
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  table tbody tr:hover {
+    background-color: rgba(117, 206, 241, 0.4235294118);
+  }
+  table tbody tr td,
+  table tbody tr th {
+    padding: 20px;
+  }
+  .headerPill {
+    background-color: rgba(82, 167, 236, 0.436);
+    padding: 5px 12px;
+    border: 1px solid rgb(82, 167, 236);
+    border-radius: 5px;
+    cursor: pointer;
+    color: rgb(43, 41, 161);
+  }
+  
+  .transactionBox {
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    padding: 30px 18px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  }
+  
+  .headerPillDanger {
+    background-color: rgba(40, 238, 73, 0.436);
+    padding: 5px 12px;
+    border: 1px solid rgb(40, 238, 73);
+    border-radius: 5px;
+    cursor: pointer;
+    color: rgb(8, 105, 24);
+  }
+  
+  .headerPillDanger3 {
+    background-color: rgba(157, 214, 223, 0.5254901961);
+    padding: 5px 12px;
+    border: 1px solid #1d6570;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #1d6570;
+  }
+  
+  .headerPillDanger2 {
+    background-color: rgba(255, 0, 0, 0.436);
+    padding: 5px 12px;
+    border: 1px solid rgb(255, 0, 0);
+    border-radius: 5px;
+    cursor: pointer;
+    color: rgb(92, 3, 3);
+  }
+  
+  .amountBox {
+    background-color: rgba(40, 238, 73, 0.436);
+    padding: 5px 12px;
+    border: 1px solid rgb(40, 238, 73);
+    border-radius: 5px;
+    cursor: pointer;
+    color: rgb(8, 105, 24);
+  }
+  
+  .responsiveStyle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  @media screen and (max-width: 992px) {
+    .responsiveStyle {
+      display: block;
+    }
+    .headerPill {
+      width: 100%;
+    }
+    .headerPillDanger {
+      width: 100%;
+    }
+  }

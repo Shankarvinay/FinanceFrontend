@@ -1,0 +1,54 @@
+<div class="loginForm">
+  <div class="LoginShadow">
+    <h1 class="text-center">Login</h1>
+
+    <div style="width: 100%">
+      <form
+        #form="ngForm"
+        class="mb-4"
+        autocomplete="off"
+        (submit)="onSubmit(form)"
+      >
+        <div class="InputField">
+          <input
+            #email="ngModel"
+            name="email"
+            placeholder="Email"
+            [(ngModel)]="formModel.email"
+            required
+          />
+        </div>
+        <div class="InputField">
+          <input
+            type="password"
+            #Password="ngModel"
+            placeholder="Password"
+            name="Password"
+            [(ngModel)]="formModel.Password"
+            required
+          />
+        </div>
+        <div class="d-flex justify-content-end mt-3">
+          <a routerLink="/user/forget-password">Forget Password?</a>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group w-full">
+            <button type="submit" class="submitBtn" [disabled]="form.invalid">
+              Login
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="text-center">
+      <div>
+        Don't have a account?
+        <span> <a routerLink="/user/registration">Signup</a></span>
+      </div>
+
+      <a routerLink="/admin/login">Login as admin</a>
+    </div>
+  </div>
+</div>

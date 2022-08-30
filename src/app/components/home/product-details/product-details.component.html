@@ -1,0 +1,105 @@
+<div class="row m-5 p-4 detailsCard position-relative" *ngIf="productsDetails">
+  <div class="col-lg-5">
+    <img
+      alt=""
+      height="auto"
+      width="100%"
+      style="border-radius: 12px"
+      [src]="productsDetails.data.img"
+    />
+    <div class="mt-5">
+      <h6>No Cost EMI Starts At: ${{ productsDetails.data.emiCost }}</h6>
+      <div class=".table-responsive">
+        <p>Emi Plans:</p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Emi Period</th>
+              <th scope="col">EMi Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">3 Months</th>
+              <td>${{ (productsDetails.data.totalCost / 3).toFixed(2) }}</td>
+            </tr>
+            <tr>
+              <th scope="row">6 Months</th>
+              <td>${{ (productsDetails.data.totalCost / 6).toFixed(2) }}</td>
+            </tr>
+            <tr>
+              <th scope="row">9 months</th>
+              <td>${{ (productsDetails.data.totalCost / 9).toFixed(2) }}</td>
+            </tr>
+            <tr>
+              <th scope="row">1 Year</th>
+              <td>${{ (productsDetails.data.totalCost / 12).toFixed(2) }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-7 p-4 position-relative">
+    <div class="tab-panel">
+      <h1 class="Header">{{ productsDetails.data.productName }}</h1>
+      <p>{{ productsDetails.data.productDescription }}</p>
+      <div class="ratingbox">
+        <h6 class="headerPill">
+          {{ productsDetails.data.rating }}
+          <i style="color: gold" class="fa-solid fa-star"></i>
+        </h6>
+      </div>
+      <div>
+        <h3>Price: ${{ productsDetails.data.totalCost }}</h3>
+        <div class="ratingbox2 d-flex my-3">
+          <h6 class="headerPill">
+            Rating: {{ productsDetails.data.rating }}
+            <i style="color: gold" class="fa-solid fa-star"></i>
+          </h6>
+        </div>
+      </div>
+      <hr />
+
+      <div class="loginForm">
+        <div style="width: 100%">
+          <form
+            #formModel="ngForm"
+            class="mb-4"
+            autocomplete="off"
+            (submit)="onSubmit(formModel)"
+          >
+            <div class="selectField">
+              <label for="Emi">Select Emi:</label>
+              <select
+                #sasd="ngModel"
+                name="EmiDuration"
+                id="emiDuration"
+                [(ngModel)]="formModel.EmiDuration"
+                required
+              >
+                <option disabled>Select Emi</option>
+                <option value="3">3 Month</option>
+                <option value="6">6 Month</option>
+                <option value="9">9 Month</option>
+                <option value="12">1 Year</option>
+              </select>
+            </div>
+
+            <div class="form-row mt-2">
+              <div class="form-group w-full">
+                <button
+                  type="submit"
+                  class="submitBtn"
+                  [disabled]="formModel.invalid"
+                >
+                  Buy Now
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

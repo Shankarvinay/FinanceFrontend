@@ -1,0 +1,48 @@
+.header{
+  background: rgb(172,219,221);
+  background: linear-gradient(159deg, rgba(172,219,221,1) 35%, rgba(21,207,208,1) 51%);
+}
+ .headerPill {
+    background-color: rgba(82, 167, 236, 0.436);
+    padding: 5px 12px;
+    border: 1px solid rgb(82, 167, 236);
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .logoutbtn{
+    margin-left: 33em;
+  }
+  .loginForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+  }
+  .loginForm .LoginShadow {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border-radius: 12px;
+    width: 600px;
+    padding: 50px 80px;
+  }
+  .loginForm .LoginShadow div .InputField input {
+    background-color: rgb(231, 238, 241);
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 18px;
+    margin-top: 20px;
+    font-size: 14px;
+  }
+  .loginForm .LoginShadow div .InputField input:focus {
+    outline: none;
+  }
+  .loginForm .LoginShadow div .submitBtn {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 20px;
+    margin-top: 20px;
+    color: white;
+    background-color: rgb(50, 64, 85);
+  }
